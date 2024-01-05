@@ -103,10 +103,11 @@
           <configuration>
             <enablePreview>true</enablePreview>
             <parameters>true</parameters>
-            <compilerArgs>
-              <compilerArg>--add-modules</compilerArg>
+            <compilerArgument>--add-modules=java.base,jdk.incubator.vector</compilerArgument>
+<!--            <compilerArgs>
+              <compilerArg>&#45;&#45;add-modules</compilerArg>
               <compilerArg>java.base,jdk.incubator.vector</compilerArg>
-            </compilerArgs>
+            </compilerArgs>-->
           </configuration>
         </plugin>
         <plugin>
@@ -156,6 +157,17 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>21</source>
+          <target>21</target>
+          <compilerArgs>--enable-preview</compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
 
   </build>
   <profiles>
