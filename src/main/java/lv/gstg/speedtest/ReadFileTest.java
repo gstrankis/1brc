@@ -19,14 +19,14 @@ public class ReadFileTest {
     private void run() {
         measure("wrappedByteBuffer 1Mb", () -> wrappedByteBuffer(1024 * 1024));
         measure("mappedByteBuffer 1Mb", () -> mappedByteBuffer(1024 * 1024));
-//        measure("mappedByteBuffer   10Mb", () -> mappedByteBuffer_on_randomAccessFile(10 * 1024 * 1024));
+        // measure("mappedByteBuffer 10Mb", () -> mappedByteBuffer_on_randomAccessFile(10 * 1024 * 1024));
         measure("bufferedInputStream   1Mb", () -> bufferedInputStream(1024 * 1024));
         measure("bufferedInputStream  10Mb", () -> bufferedInputStream(10 * 1024 * 1024));
-//        measure("bufferedInputStream 100Mb", () -> bufferedInputStream(100 * 1024 * 1024));
-//        measure("bufferedInputStream   1Gb", () -> bufferedInputStream(1024 * 1024 * 1024));
-//        measure("bufferedReader_readLine", this::bufferedReader_readLine);
-//        measure("bufferedReader 1Mb", () -> bufferedReader(1024 * 1024));
-//        measure("bufferedReader 1Gb", () -> bufferedReader(1024 * 1024 * 1024));
+        // measure("bufferedInputStream 100Mb", () -> bufferedInputStream(100 * 1024 * 1024));
+        // measure("bufferedInputStream 1Gb", () -> bufferedInputStream(1024 * 1024 * 1024));
+        // measure("bufferedReader_readLine", this::bufferedReader_readLine);
+        // measure("bufferedReader 1Mb", () -> bufferedReader(1024 * 1024));
+        // measure("bufferedReader 1Gb", () -> bufferedReader(1024 * 1024 * 1024));
     }
 
     private void bufferedInputStream(final int bufferSize) {
@@ -38,7 +38,8 @@ public class ReadFileTest {
                 bytes += b;
             }
             // System.out.println("BufferedInputStream(Files.newInputStream " + bytes + " bytes");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -52,7 +53,8 @@ public class ReadFileTest {
                 bytes += b;
             }
             // System.out.println("bufferedReader " + bytes + " bytes");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -65,14 +67,15 @@ public class ReadFileTest {
                 bytes += line.length();
             }
             // System.out.println("bufferedReader_readLine " + bytes + " bytes");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void mappedByteBuffer(final int bufferSize) {
-        //https://www.geeksforgeeks.org/what-is-memory-mapped-file-in-java/
-//        try (FileChannel ch = new RandomAccessFile(FILE, "r").getChannel()) {
+        // https://www.geeksforgeeks.org/what-is-memory-mapped-file-in-java/
+        // try (FileChannel ch = new RandomAccessFile(FILE, "r").getChannel()) {
         try (FileChannel ch = FileChannel.open(Paths.get(FILE), StandardOpenOption.READ)) {
             long offset = 0;
             byte[] buf = new byte[bufferSize];
@@ -88,7 +91,8 @@ public class ReadFileTest {
                 bytes += length;
             }
             System.out.println("mappedByteBuffer " + bytes + " bytes of file size " + ch.size());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -99,13 +103,14 @@ public class ReadFileTest {
             ByteBuffer bb = ByteBuffer.wrap(buf);
             int read;
             long bytes = 0;
-            while (( read=ch.read(bb))>=0) {
-                bytes+=read;
+            while ((read = ch.read(bb)) >= 0) {
+                bytes += read;
                 bb.flip();
                 System.out.println("wrappedByteBuffer " + bytes + " bytes of " + ch.size());
             }
             System.out.println("wrappedByteBuffer " + bytes + " bytes of file size " + ch.size());
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
