@@ -1,0 +1,51 @@
+GraalVM
+mappedByteBufferParallel  8Threads:   7629ms bytes:13795372587
+mappedByteBuffer 10Mb         :  16892ms bytes:13795372587
+wrappedByteBuffer 1Mb         :   5013ms bytes:13795372587
+bufferedInputStream   1Mb     :   6378ms bytes:13795372587
+
+openjdk version "21" 2023-09-19 LTS
+mappedByteBufferParallel  8Th :   5362ms bytes:13795372587
+mappedByteBufferParallel 16Th :   4012ms bytes:13795372587
+mappedByteBuffer 10Mb         :  15071ms bytes:13795372587
+wrappedByteBuffer 1Mb         :   4353ms bytes:13795372587
+bufferedInputStream   1Mb     :   6100ms bytes:13795372587
+
+
+--------
+GraalVM Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 21.0.1+12.1 (build 21.0.1+12-jvmci-23.1-b19, mixed mode, sharing)
+readAllBytesOneByOne          :    842ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    113ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :     95ms bytes:1073741824
+readAllBytesOneByOne          :    566ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :     69ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :     69ms bytes:1073741824
+readAllBytesOneByOne          :    756ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :     70ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :     69ms bytes:1073741824
+
+OpenJDK
+15:16 $ java --class-path target/average-1.0.0-SNAPSHOT.jar lv.gstg.speedtest.ReadFileTest
+readAllBytesOneByOne          :    676ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    257ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :    273ms bytes:1073741824
+readAllBytesOneByOne          :   2013ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    231ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :    258ms bytes:1073741824
+readAllBytesOneByOne          :    326ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    234ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :    258ms bytes:1073741824
+
+Java HotSpot(TM) 64-Bit Server VM (build 21+35-LTS-2513, mixed mode, sharing)
+readAllBytesOneByOne          :    679ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    249ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :    269ms bytes:1073741824
+readAllBytesOneByOne          :   1372ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    246ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :    257ms bytes:1073741824
+readAllBytesOneByOne          :    329ms bytes:1073741824
+readAllBytesUsingBuffer 1kb   :    234ms bytes:1073741824
+readAllBytesUsingBuffer 1Mb   :    257ms bytes:1073741824
+
+
+
